@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
 @RestController
-@RequestMapping("api/rest/v1/books")
+@RequestMapping("/reservation/api/v1/books")
 @RequiredArgsConstructor
 @EnableHypermediaSupport(type = EnableHypermediaSupport.HypermediaType.HAL)
 public class BookLendingRestController {

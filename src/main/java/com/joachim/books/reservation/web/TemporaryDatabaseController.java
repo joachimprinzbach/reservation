@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("db")
+@RequestMapping("/reservation/api/v1/db")
 @RequiredArgsConstructor
 public class TemporaryDatabaseController {
 
