@@ -1,0 +1,55 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: bookshelf
+  name:reservation
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    app: bookshelf
+    deploymentconfig: reservation
+  template:
+    metadata:
+      labels:
+        app: bookshelf
+        deploymentconfig: reservation
+    spec:
+      containers:
+      - env:
+        - name: KAFKA_BOOTSTRAP_ENDPOINTS
+          value: bookshelf-cluster-kafka-bootstrap:9093
+        - name: KAFKA_KEYSTORE_LOCATION
+          value: file://var/lib/kafka/keystore.jks
+        - name: KAFKA_KEYSTORE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: keystore-password
+              name: bookshelf-cluster-cluster-ca-keystore-password
+        image: docker-registry.default.svc:5000/bookshelf-dev/shelf:latest
+        imagePullPolicy: Always
+        name: reservation
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /var/lib/kafka/
+          name: keystore
+          readOnly: true
+      volumes:
+      - name: keystore
+        secret:
+          secretName: bookshelf-cluster-cluster-ca-keystore
+  test: false
+  triggers:
+  - type: ConfigChange
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - reservation
+      from:
+        kind: ImageStreamTag
+        name: reservation:latest
+        namespace: bookshelf-dev
+    type: ImageChange
