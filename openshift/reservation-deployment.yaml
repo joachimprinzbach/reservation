@@ -3,7 +3,7 @@ kind: DeploymentConfig
 metadata:
   labels:
     app: bookshelf
-  name:reservation
+  name: reservation
 spec:
   replicas: 1
   revisionHistoryLimit: 10
@@ -27,8 +27,6 @@ spec:
             secretKeyRef:
               key: keystore-password
               name: bookshelf-cluster-cluster-ca-keystore-password
-        image: docker-registry.default.svc:5000/bookshelf-dev/shelf:latest
-        imagePullPolicy: Always
         name: reservation
         ports:
         - containerPort: 8080
@@ -50,6 +48,6 @@ spec:
       - reservation
       from:
         kind: ImageStreamTag
-        name: reservation:latest
+        name: book-reservation:latest
         namespace: bookshelf-dev
     type: ImageChange
