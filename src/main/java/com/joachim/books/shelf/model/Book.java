@@ -1,4 +1,4 @@
-package com.joachim.books.reservation.model;
+package com.joachim.books.shelf.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

@@ -1,7 +1,7 @@
 package com.joachim.books.reservation.web;
 
-import com.joachim.books.reservation.model.Book;
 import com.joachim.books.reservation.repository.BookRepository;
+import com.joachim.books.shelf.model.Book;
 import lombok.RequiredArgsConstructor;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resource;

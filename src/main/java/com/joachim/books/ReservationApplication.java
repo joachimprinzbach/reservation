@@ -1,4 +1,4 @@
-package com.joachim.books.reservation;
+package com.joachim.books;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

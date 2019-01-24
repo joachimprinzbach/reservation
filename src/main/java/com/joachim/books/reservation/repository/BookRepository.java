@@ -1,6 +1,6 @@
 package com.joachim.books.reservation.repository;
 
-import com.joachim.books.reservation.model.Book;
+import com.joachim.books.shelf.model.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
